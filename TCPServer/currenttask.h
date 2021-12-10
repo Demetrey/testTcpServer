@@ -6,9 +6,13 @@
 #include <QHostAddress>
 #include <QEventLoop>
 #include <QTimer>
+#include <iostream>
+
 
 #include "datacounter.h"
 
+// Current task of execution
+// Reads data from a socket and sends a response
 class CurrentTask : public QObject, public QRunnable
 {
     Q_OBJECT

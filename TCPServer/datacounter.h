@@ -8,12 +8,15 @@
 #include <QMutexLocker>
 #include <QDateTime>
 #include <QElapsedTimer>
+#include <iostream>
 
+// Counter of data received/sent data and time of sending
 class DataCounter : public QObject
 {
     Q_OBJECT
 public:
-    explicit DataCounter(QObject *parent = nullptr);
+    explicit DataCounter(bool mt_control_flag = false,
+                         QObject *parent = nullptr);
     ~DataCounter();
 
     void print_log();                   // \_(^-_-^)_/
@@ -31,6 +34,10 @@ private:
     size_t _get;                // bytes get
     size_t _send;               // bytes send
     size_t _connections;        // number of connections
+
+    bool _mt_control_flag;      // false - session control
+                                // true - one connection
+    qint64 _total_time;
 
     void _create_file();        // create file if not exists
 
